@@ -1,0 +1,37 @@
+# Իրականացնել պարզագույն բառարան, որը ֆայլից կկարդա բառերի համախումբ՝ անգերեն-հայերի բառերի
+# թարգմանությամբ։ Բառերը կարող են լինել Python keyword-ներ, statement-ներ և այլ համակարգչային
+# գիտությանը վերաբերվող բառեր։ Օբյեկտը,որի մեջ պետք է պահեք բառերը, կարող է լինել dictionary։
+
+dictionary = {"if": "եթե", "or": "կամ", "and": "եվ", "return": "վերադարձնել", "except": "բացի"}
+file = open("py_file.txt", "w")
+for key in dictionary:
+    file.write(f'{key}\t{dictionary[key]}\n')
+file.close()
+print(open("py_file.txt").read())
+
+
+# Տրված է հետևյալ ֆունկցիան def myfunc(alist): . . . . return len(alist)։ dis module-ի օգնությամբ դուրս
+# բերել բայթ կոդի ներկայացումը և նկարագրել բոլոր դաշտերը (Python byte-code)։
+
+import dis
+
+
+def myfunc(alist):
+    return len(alist)
+
+
+print(myfunc.__code__.co_code)
+dis.dis(myfunc)
+print(myfunc.__code__.co_names)
+print(myfunc.__code__.co_varnames)
+
+# ձախ կողմի թիվը ցույց է տալիս կոդի տողը։ Ինստրուկցիաների(LOAD_GLOBAL,LOAD_FAST,CALL_FUNCTION,RETURN_VALUE)
+# ձախ կողմի թվերը ցույց են տալիս bytecode-ի ինստրուկցիաների offset-երը։ LOAD_FAST 0  նշանակում է, որ co_names-ի(գլոբալ
+# փոփոխական) 0-րդ ինդեքսում գտվող անվան կողմից օբյեկտին հղումը push է արվում stack-ի մեջ։ LOAD_FAST 0 նշանակում է
+# co_varnames-ի (լոկալ փոփոխական) 0-րդ ինդեքսում գտնվող անվան կողմից օբյեկտին հղումը push է արվում stack-ի մեջ։
+# CALL_FUNCTION 1-ը նշանակում է, որ կանչվող ֆունկցիան ունի մեկ արգումենտ։ Այս ինստրուկցիան pop է անում արգումենտը և
+# կանչվող օբյեկտը stack-ից և push է անում ֆունկցիայի կողմից վերադարձվող արժեքը: RETURN_VALUE-ն վերադարձնում է կանչող
+# ֆունկցիայի Top of Stack-ը:
+
+
+
